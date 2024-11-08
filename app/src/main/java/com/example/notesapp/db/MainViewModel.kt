@@ -3,6 +3,8 @@ package com.example.notesapp.db
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.room.Delete
+import androidx.room.Update
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val repository: Repository) : ViewModel() {
@@ -12,6 +14,16 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             repository.Insert(note)
         }
+    }
+
+    suspend fun Update(note: Note) {
+        viewModelScope.launch {
+            repository.Update(note)
+        }
+    }
+
+    suspend fun Delete(note: Note) {
+        repository.Delete(note)
     }
 
 }
